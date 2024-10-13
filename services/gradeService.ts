@@ -36,7 +36,7 @@ class GradeService {
     // קבלת ממוצע ציונים לכיתה
     async getClassAverage(teacherId: string) {
         const classData = await Class.findOne({ teacher: teacherId }).populate('students');
-        const grades = await Grade.find({ student: { $in: classData.students } });
+        const grades = await Grade.find({ student: {$in: classData.students}});
         const average = grades.reduce((sum, grade) => sum + grade.grade, 0) / grades.length;
         return average;
     }
