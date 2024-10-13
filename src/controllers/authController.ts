@@ -32,7 +32,7 @@ export const login = async (req: Request, res: Response) => {
         const user = await TeacherService.login(email, password) || await StudentService.login(email, password);
         if (!user) return res.status(401).json({ message: 'Invalid credentials' });
 
-        const token = generateToken(user._id);
+        const token = generateToken(user.id);
         res.status(200).json({ token });
     } catch (error) {
         res.status(500).json({ message: error.message });
