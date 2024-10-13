@@ -25,7 +25,6 @@ const studentSchema = new Schema<IStudent>({
     class: { type: Schema.Types.ObjectId, 
         ref: 'Class', 
         required: true 
-        //
     }
 }, { timestamps: true });
 
