@@ -1,38 +1,36 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerDocument from '../swagger.json'; 
 import authRoutes from './routes/authRoutes';
-import  gradeRoutes from './routes/gradeRoutes';
-import {connectToDatabase} from './services/database';
-
+import gradeRoutes from './routes/gradeRoutes';
+import { connectToDatabase } from './services/database';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDefinition from './utils/swaggerconfig';
 import cookieParser from 'cookie-parser';
+
 dotenv.config();
-
-
-
-
-
-
 
 const app = express();
 
-app.use(cookieParser());
+const swaggerSpec = swaggerJsdoc({
+    swaggerDefinition,  
+    apis: ['./src/routes/*.ts'], 
+});
 
-app.use(express.json());
-app.use('/register', authRoutes)
-app.use('/teachers', gradeRoutes);
+//ממשק הסוואגר
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec)); 
+//בקשות תמיכה 
+app.use(cookieParser()); 
+app.use(express.json()); 
 
+app.use('/register', authRoutes); 
+app.use('/teachers', gradeRoutes); 
 
-
-
-
+// התחברות למסד נתונים
 connectToDatabase();
-const PORT = process.env.PORT || 3000
-app.listen(PORT , () => {
-    console.log("server is raning to port",PORT);
 
-    
-})
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log("server is running on port", PORT); 
+});

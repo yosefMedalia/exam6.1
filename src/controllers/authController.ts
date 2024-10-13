@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import TeacherService from '../services/teacherService';
 import StudentService from '../services/studentService';
 import { generateToken } from '../utils/jwtUtils';
@@ -30,7 +30,10 @@ export const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
         const user = await TeacherService.login(email, password) || await StudentService.login(email, password);
-        if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+        if (!user){
+            res.status(401).json({ message: 'Invalid credentials' });
+            return 
+        } 
 
         const token = generateToken(user.id);
         res.status(200).json({ token });
