@@ -24,7 +24,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(cookieParser()); 
 app.use(express.json()); 
 
-app.use('/register', authRoutes); 
+app.use('/', authRoutes); 
 app.use('/teachers', gradeRoutes); 
 
 // התחברות למסד נתונים

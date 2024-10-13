@@ -1,7 +1,5 @@
 import { Router } from 'express';
 import { registerTeacher, registerStudent, login } from '../controllers/authController';
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
 
 const router = Router();
 
