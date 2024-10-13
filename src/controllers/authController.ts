@@ -10,7 +10,7 @@ export const registerTeacher = async (req: Request, res: Response) => {
         const newTeacher = await TeacherService.registerTeacher(name, email, password, className);
         res.status(201).json({ message: 'Teacher registered successfully', classId: newTeacher.classId });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in teacher ragister" });
     }
 };
 
@@ -21,7 +21,7 @@ export const registerStudent = async (req: Request, res: Response) => {
         const newStudent = await StudentService.registerStudent(name, email, password, classId);
         res.status(201).json({ message: 'Student registered successfully', studentId: newStudent._id });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in a student register" });
     }
 };
 
@@ -35,6 +35,6 @@ export const login = async (req: Request, res: Response) => {
         const token = generateToken(user.id);
         res.status(200).json({ token });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in login" });
     }
 };

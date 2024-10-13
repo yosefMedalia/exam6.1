@@ -12,6 +12,8 @@ export const connectToDatabase = async(): Promise<void> =>{
         console.log("Connected to mpongoose database");
         
     } catch (error) {
+        console.log(error);
+        
         console.log("Couldn't connect to database");
         
     }

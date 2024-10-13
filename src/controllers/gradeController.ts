@@ -8,7 +8,7 @@ export const addGrade = async (req: Request, res: Response) => {
         const newGrade = await GradeService.addGrade(req.body.user._id, studentId, grade, comment);
         res.status(201).json({ message: 'Grade added successfully', newGrade });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "essage 500" });
     }
 };
 
@@ -20,7 +20,7 @@ export const updateGrade = async (req: Request, res: Response) => {
         const updatedGrade = await GradeService.updateGrade(req.body.user_id, gradeId, grade, comment);
         res.status(200).json({ message: 'Grade updated successfully', updatedGrade });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in update" });
     }
 };
 
@@ -30,18 +30,18 @@ export const getStudentGrades = async (req: Request, res: Response) => {
         const grades = await GradeService.getStudentGrades(req.body.user._id);
         res.status(200).json(grades);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in get the grats" });
     }
 };
 
 // קבלת ממוצע ציונים לכיתה
 export const getClassAverage = async (req: Request, res: Response) => {
-    try {
-        const average = await GradeService.getClassAverage(req.body.user._id);
-        res.status(200).json({ average });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+    // try {
+    //     const average = await GradeService.getClassAverage(req.body.user._id);
+    //     res.status(200).json({ average });
+    // } catch (error) {
+    //     res.status(500).json({ message: "error in avg" });
+    // }
 };
 
 // קבלת ציון של תלמיד מסוים
@@ -51,6 +51,6 @@ export const getStudentGrade = async (req: Request, res: Response) => {
         const grade = await GradeService.getStudentGrade(req.body.user._id, studentId);
         res.status(200).json(grade);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: "error in get a singel grade" });
     }
 };

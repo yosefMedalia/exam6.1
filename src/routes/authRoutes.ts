@@ -9,6 +9,6 @@ router.post('/register/teacher', registerTeacher);
 // רישום תלמיד
 router.post('/register/student', registerStudent);
 
-router.post('/login', login);
+// router.post('/login', login);
 
 export default router;
